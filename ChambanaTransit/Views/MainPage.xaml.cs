@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.Data.Json;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.Data.Json;
-using System.Collections.Generic;
 
 namespace ChambanaTransit.Views
 {
-    public sealed partial class MainPage : Page, INotifyPropertyChanged
+    public sealed partial class MainPage : Page
     {
         private List<Departure> Departures;
+
         public MainPage()
         {
             InitializeComponent();
@@ -113,8 +114,16 @@ namespace ChambanaTransit.Views
             {
                 BusStop SelectedBusStop = new BusStop(SortedJsonRoutesObject);
                 ParklandBusList.Items.Clear();
-                Departures = SelectedBusStop.departures;
-                Stop2.Text = Departures[0].headsign;
+                foreach (Departure departure in SelectedBusStop.departures)
+                {
+                    Departures.Add(new Departure(departure));
+                }
+                //foreach (Departure departure in SelectedBusStop.departures)
+                //{
+                //    var TempObj = new Tuple<string, double>(departure.headsign, departure.expected_mins);
+                //    ParklandBusList.Items.Add(TempObj);
+                //}
+                //Stop2.Text = Departures[0].headsign;
             }
             ParsingParklandProgressIndicator.Visibility = Visibility.Collapsed;
         }

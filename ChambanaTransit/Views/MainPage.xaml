@@ -1,18 +1,17 @@
 ﻿<Page
     x:Class="ChambanaTransit.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:data="using:ChambanaTransit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ChambanaTransit"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="BusArrivalTimeListTemplate"
-                      x:DataType="data:Departure">
-            <StackPanel Orientation="Horizontal">
+        <DataTemplate   x:DataType="data:Departure"
+                        x:Key="BusArrivalTimeListTemplate">
+            <StackPanel Orientation="Vertical">
                 <TextBlock  x:Name="BusRouteName" 
-                            Text="{x:Bind headsign}"
-                            Style="{ThemeResource BodyTextBlockStyle}" 
+                            Text="Stuff"
                             HorizontalAlignment="Left"/>
                 <!--<TextBlock  x:Name="TimeRemaining"
                             Text="{x:Bind expected_mins}" 
@@ -64,7 +63,11 @@
                           HorizontalAlignment="Stretch"
                           Height="300"
                           ItemsSource="{x:Bind Departures}"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListViewItem>
+                        <TextBlock Text="TEMP GARBAGE"/>
+                    </ListViewItem>
+                </ListView>
                 <ProgressBar x:Name="ParsingParklandProgressIndicator"
                                     IsIndeterminate="True"
                                     Visibility = "Collapsed"
