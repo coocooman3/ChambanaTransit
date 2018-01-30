@@ -85,7 +85,9 @@ namespace ChambanaTransit.Views
             ParsingParklandProgressIndicator.Visibility = Visibility.Visible;
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
             //Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getlastfeedupdate?" + ApiKey);
-            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=PKLN&" + ApiKey);
+            //Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=PKLN&" + ApiKey);
+            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=WRTSPFLD&" + ApiKey);
+
 
             Windows.Web.Http.HttpResponseMessage httpResponse = new Windows.Web.Http.HttpResponseMessage();
             string httpResponseBody = "";
@@ -109,11 +111,10 @@ namespace ChambanaTransit.Views
             }
             else
             {
-                //BusList;
                 BusStop SelectedBusStop = new BusStop(SortedJsonRoutesObject);
                 ParklandBusList.Items.Clear();
                 Departures = SelectedBusStop.departures;
-                //ContentArea.Children.Add(BusList);
+                Stop2.Text = Departures[0].headsign;
             }
             ParsingParklandProgressIndicator.Visibility = Visibility.Collapsed;
         }

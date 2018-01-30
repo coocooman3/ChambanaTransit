@@ -11,19 +11,15 @@
                       x:DataType="data:Departure">
             <StackPanel Orientation="Horizontal">
                 <TextBlock  x:Name="BusRouteName" 
-                            Margin="4,4,0,4"
-                            Text="{x:Bind headsign}" 
-                            x:Phase="2" 
+                            Text="{x:Bind headsign}"
                             Style="{ThemeResource BodyTextBlockStyle}" 
-                            HorizontalAlignment="Center"/>
-                <TextBlock  x:Name="Position"
+                            HorizontalAlignment="Left"/>
+                <!--<TextBlock  x:Name="TimeRemaining"
                             Text="{x:Bind expected_mins}" 
-                            Margin="4,4,0,4"
-                            x:Phase="3" 
                             Style="{ThemeResource BodyTextBlockStyle}"
                             FontSize="12"
                             Foreground="Gray"
-                            HorizontalAlignment="Center"/>
+                            HorizontalAlignment="Left"/>-->
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -66,7 +62,7 @@
                 <Button x:Name="ParseParkland"  Content="Click Me" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="22" Click="Parkland_Button_Click" />
                 <ListView x:Name="ParklandBusList"
                           HorizontalAlignment="Stretch"
-                          Height="Auto"
+                          Height="300"
                           ItemsSource="{x:Bind Departures}"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingParklandProgressIndicator"
