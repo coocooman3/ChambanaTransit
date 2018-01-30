@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.Data.Json;
 using System.Collections.Generic;
 
-namespace ChambanaTransit
+namespace ChambanaTransit.Views
 {
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
