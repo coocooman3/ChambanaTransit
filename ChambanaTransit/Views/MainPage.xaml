@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="ChambanaTransit.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:ChambanaTransit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="BusArrivalTimeListTemplate"
+                      x:DataType="data:Departure">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  x:Name="BusRouteName" 
+                            Margin="4,4,0,4"
+                            Text="{x:Bind headsign}" 
+                            x:Phase="2" 
+                            Style="{ThemeResource BodyTextBlockStyle}" 
+                            HorizontalAlignment="Center"/>
+                <TextBlock  x:Name="Position"
+                            Text="{x:Bind expected_mins}" 
+                            Margin="4,4,0,4"
+                            x:Phase="3" 
+                            Style="{ThemeResource BodyTextBlockStyle}"
+                            FontSize="12"
+                            Foreground="Gray"
+                            HorizontalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <GridView Margin="12,0,12,0" HorizontalAlignment="Left">
+        <GridViewItem VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center">
+                <TextBlock
+                    x:Name="Stop1"
+                    x:Uid="Main_Title1"
+                    Text="Wright And Springfield"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    FontSize="22"/>
+                <Button x:Name="ParseGrainger"  Content="Click Me" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="22" Click="Grainger_Button_Click" />
+                <ListView x:Name="GraingerBusList" HorizontalAlignment="Stretch" Height="Auto"/>
+                <ProgressBar x:Name="ParsingGraingerProgressIndicator"
+                                IsIndeterminate="True"
+                                Visibility = "Collapsed"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Width="Auto"
+                                Height="Auto"/>
+            </StackPanel>
+        </GridViewItem>
+
+        <GridViewItem VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top">
+                <TextBlock
+                        x:Name="Stop2"
+                        x:Uid="Main_Title2"
+                        Text="Parkland"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="22"/>
+                <Button x:Name="ParseParkland"  Content="Click Me" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="22" Click="Parkland_Button_Click" />
+                <ListView x:Name="ParklandBusList"
+                          HorizontalAlignment="Stretch"
+                          Height="Auto"
+                          ItemsSource="{x:Bind Departures}"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                <ProgressBar x:Name="ParsingParklandProgressIndicator"
+                                    IsIndeterminate="True"
+                                    Visibility = "Collapsed"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="Auto"
+                                    Height="Auto"/>
+            </StackPanel>
+        </GridViewItem>
+    </GridView>
+
+</Page>
