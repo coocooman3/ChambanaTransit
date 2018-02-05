@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Windows.Data.Json;
 
-namespace ChambanaTransit{
+namespace ChambanaTransit.Models{
     public class Status
     {
         public double code { get; set; }
