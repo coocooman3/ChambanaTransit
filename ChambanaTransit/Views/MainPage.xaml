@@ -28,12 +28,12 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ListView Width="Auto" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled">
+    <ListView Width="Auto" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,12,0,12">
         <ListViewItem VerticalAlignment="Stretch"
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Left">
+                        Width="420">
                 <!--<TextBlock
                     x:Name="Stop1"
                     Text="Wright And Springfield"
@@ -42,8 +42,8 @@
                         Content="Wright And Springfield"
                         FontSize="22"
                         Click="Grainger_Button_Click"
-                        Width="200"
-                        Margin="-12,0,12,0"/>
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GraingerBusList"
                           HorizontalAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
@@ -61,7 +61,7 @@
                   HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Left">
+                        Width="420">
                 <!--<TextBlock
                         x:Name="Stop2"
                         Text="Parkland College"
@@ -70,8 +70,8 @@
                         Content="Parkland College"
                         FontSize="22"
                         Click="Parkland_Button_Click"
-                        Width="200"
-                        Margin="-12,0,12,0"/>
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="ParklandBusList"
                           HorizontalAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
@@ -90,7 +90,7 @@
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Stretch" Width="420">
                 <!--<TextBlock
                         x:Name="Stop3"
                         Text="Green And 6th"
@@ -99,8 +99,8 @@
                         Content="Green And 6th"
                         FontSize="22"
                         Click="Green_Button_Click"
-                        Width="200"
-                        Margin="-12,0,12,0"/>
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GreenBusList"
                           HorizontalAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
