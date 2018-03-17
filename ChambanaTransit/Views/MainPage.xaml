@@ -11,8 +11,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="375"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock  x:Name="BusRouteName"
                                 Grid.Column="0"
@@ -22,6 +22,7 @@
                                 Grid.Column="1"
                                 Text="{x:Bind expected_mins}" 
                                 Style="{ThemeResource BodyTextBlockStyle}"
+                                HorizontalAlignment="Right"
                                 Foreground="Green"/>
                 </Grid>
             </StackPanel>
@@ -29,7 +30,7 @@
     </Page.Resources>
 
     <ListView Width="Auto" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,12,0,12">
-        <ListViewItem VerticalAlignment="Stretch"
+        <ListViewItem VerticalAlignment="Top"
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
@@ -57,35 +58,6 @@
             </StackPanel>
         </ListViewItem>
 
-        <ListViewItem VerticalAlignment="Stretch"
-                  HorizontalAlignment="Stretch">
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        Width="420">
-                <!--<TextBlock
-                        x:Name="Stop2"
-                        Text="Parkland College"
-                        FontSize="22"/>-->
-                <Button x:Name="Stop2"
-                        Content="Parkland College"
-                        FontSize="22"
-                        Click="Parkland_Button_Click"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"/>
-                <ListView x:Name="ParklandBusList"
-                          HorizontalAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
-                </ListView>
-                <ProgressBar x:Name="ParsingParklandProgressIndicator"
-                                    IsIndeterminate="True"
-                                    Visibility = "Collapsed"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Width="Auto"
-                                    Height="Auto"/>
-            </StackPanel>
-        </ListViewItem>
-
         <ListViewItem VerticalAlignment="Top"
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
@@ -103,9 +75,36 @@
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GreenBusList"
                           HorizontalAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
-                </ListView>
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingGreenProgressIndicator"
+                                    IsIndeterminate="True"
+                                    Visibility = "Collapsed"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="Auto"
+                                    Height="Auto"/>
+            </StackPanel>
+        </ListViewItem>
+
+        <ListViewItem VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                        Width="420">
+                <!--<TextBlock
+                        x:Name="Stop2"
+                        Text="Parkland College"
+                        FontSize="22"/>-->
+                <Button x:Name="Stop2"
+                        Content="Parkland College"
+                        FontSize="22"
+                        Click="Parkland_Button_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
+                <ListView x:Name="ParklandBusList"
+                          HorizontalAlignment="Stretch"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                <ProgressBar x:Name="ParsingParklandProgressIndicator"
                                     IsIndeterminate="True"
                                     Visibility = "Collapsed"
                                     HorizontalAlignment="Left"

@@ -1,17 +1,18 @@
-﻿using System;
+﻿using ChambanaTransit.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.Data.Json;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using ChambanaTransit.Models;
 
 namespace ChambanaTransit.Views
 {
     public sealed partial class MainPage : Page
     {
         private List<Departure> Departures;
+
 
         public MainPage()
         {
@@ -37,13 +38,12 @@ namespace ChambanaTransit.Views
         {
 
         }
-        string ApiKey = "key=ee652d6a7a2346049b9f7750dd0cda90";
         private async void Grainger_Button_Click(object sender, RoutedEventArgs e)
         {
             //Create an HTTP client object
             ParsingGraingerProgressIndicator.Visibility = Visibility.Visible;
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient(); 
-            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=WRTSPFLD&" + ApiKey);
+            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=WRTSPFLD&" + App.ApiKey);
 
             Windows.Web.Http.HttpResponseMessage httpResponse = new Windows.Web.Http.HttpResponseMessage();
             string httpResponseBody = "";
@@ -84,7 +84,7 @@ namespace ChambanaTransit.Views
             //Create an HTTP client object
             ParsingParklandProgressIndicator.Visibility = Visibility.Visible;
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
-            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=PKLN&" + ApiKey);
+            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=PKLN&" + App.ApiKey);
 
 
             Windows.Web.Http.HttpResponseMessage httpResponse = new Windows.Web.Http.HttpResponseMessage();
@@ -131,7 +131,7 @@ namespace ChambanaTransit.Views
             //Create an HTTP client object
             ParsingGreenProgressIndicator.Visibility = Visibility.Visible;
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
-            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=GRN6TH&" + ApiKey);
+            Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getdeparturesbystop?stop_id=GRN6TH&" + App.ApiKey);
 
 
             Windows.Web.Http.HttpResponseMessage httpResponse = new Windows.Web.Http.HttpResponseMessage();
