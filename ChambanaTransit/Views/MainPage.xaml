@@ -11,8 +11,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="375"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="700"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock  x:Name="BusRouteName"
                                 Grid.Column="0"
@@ -29,12 +29,12 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ListView Width="Auto" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,12,0,12">
+    <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,0,0,0">
         <ListViewItem VerticalAlignment="Top"
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        Width="420">
+                        Width="5000">
                 <!--<TextBlock
                     x:Name="Stop1"
                     Text="Wright And Springfield"
