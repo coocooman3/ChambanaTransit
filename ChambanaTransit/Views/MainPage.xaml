@@ -28,91 +28,152 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
+    <NavigationView x:Name="NavView">
 
-    <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,0,0,0">
-        <ListViewItem VerticalAlignment="Top"
-                      HorizontalAlignment="Stretch">
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        Width="5000">
-                <!--<TextBlock
-                    x:Name="Stop1"
-                    Text="Wright And Springfield"
-                    FontSize="22"/>-->
-                <Button x:Name="Stop1"
-                        Content="Wright And Springfield"
-                        FontSize="22"
-                        Click="Grainger_Button_Click"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"/>
-                <ListView x:Name="GraingerBusList"
-                          HorizontalAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
-                <ProgressBar x:Name="ParsingGraingerProgressIndicator"
-                                IsIndeterminate="True"
-                                Visibility = "Collapsed"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Width="Auto"
-                                Height="Auto"/>
-            </StackPanel>
-        </ListViewItem>
+        <NavigationView.MenuItems>
+            <NavigationViewItem x:Uid="HomeNavItem" Content="Home" Tag="home">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE10F;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+            <NavigationViewItemHeader Content="Main pages"/>
+            <NavigationViewItem x:Uid="AppsNavItem" Icon="AllApps" Content="Apps" Tag="apps"/>
+            <NavigationViewItem x:Uid="GamesNavItem" Icon="Video" Content="Games" Tag="games"/>
+            <NavigationViewItem x:Uid="MusicNavItem" Icon="Audio" Content="Music" Tag="music"/>
+        </NavigationView.MenuItems>
 
-        <ListViewItem VerticalAlignment="Top"
-                      HorizontalAlignment="Stretch">
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch" Width="420">
-                <!--<TextBlock
-                        x:Name="Stop3"
-                        Text="Green And 6th"
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+        </NavigationView.AutoSuggestBox>
+
+        <NavigationView.HeaderTemplate>
+            <DataTemplate>
+                <Grid Margin="24,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                           FontSize="28"
+                           VerticalAlignment="Center"
+                           Text="Welcome"/>
+                    <CommandBar Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DefaultLabelPosition="Right"
+                            Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                        <AppBarButton Label="Refresh" Icon="Refresh"/>
+                        <AppBarButton Label="Import" Icon="Import"/>
+                    </CommandBar>
+                </Grid>
+            </DataTemplate>
+        </NavigationView.HeaderTemplate>
+
+        <NavigationView.PaneFooter>
+            <HyperlinkButton x:Name="MoreInfoBtn"
+                             Content="More info"
+                             Margin="12,0"/>
+        </NavigationView.PaneFooter>
+
+        <Frame x:Name="ContentFrame" Margin="24"
+               ItemInvoked="NavView_ItemInvoked"
+               Loaded="NavView_Loaded"
+               BackRequested="NavView_BackRequested">
+            <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,0,0,0">
+                <ListViewItem>
+                    <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch">
+                        <!--<TextBlock
+                        x:Name="Stop1"
+                        Text="Wright And Springfield"
                         FontSize="22"/>-->
-                <Button x:Name="Stop3"
-                        Content="Green And 6th"
-                        FontSize="22"
-                        Click="Green_Button_Click"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"/>
-                <ListView x:Name="GreenBusList"
-                          HorizontalAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
-                <ProgressBar x:Name="ParsingGreenProgressIndicator"
+                        <Button x:Name="Stop1"
+                            Content="Wright And Springfield"
+                            FontSize="22"
+                            Click="Grainger_Button_Click"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"/>
+                        <ListView x:Name="GraingerBusList"
+                              HorizontalAlignment="Stretch"
+                              ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                        <ProgressBar x:Name="ParsingGraingerProgressIndicator"
                                     IsIndeterminate="True"
                                     Visibility = "Collapsed"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="Auto"
                                     Height="Auto"/>
-            </StackPanel>
-        </ListViewItem>
+                    </StackPanel>
+                </ListViewItem>
 
-        <ListViewItem VerticalAlignment="Top"
-                  HorizontalAlignment="Stretch">
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        Width="420">
-                <!--<TextBlock
-                        x:Name="Stop2"
-                        Text="Parkland College"
-                        FontSize="22"/>-->
-                <Button x:Name="Stop2"
-                        Content="Parkland College"
-                        FontSize="22"
-                        Click="Parkland_Button_Click"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"/>
-                <ListView x:Name="ParklandBusList"
-                          HorizontalAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
-                <ProgressBar x:Name="ParsingParklandProgressIndicator"
-                                    IsIndeterminate="True"
-                                    Visibility = "Collapsed"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Width="Auto"
-                                    Height="Auto"/>
-            </StackPanel>
-        </ListViewItem>
-    </ListView>
+                <ListViewItem VerticalAlignment="Top"
+                          HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch" Width="420">
+                        <!--<TextBlock
+                            x:Name="Stop3"
+                            Text="Green And 6th"
+                            FontSize="22"/>-->
+                        <Button x:Name="Stop3"
+                            Content="Green And 6th"
+                            FontSize="22"
+                            Click="Green_Button_Click"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"/>
+                        <ListView x:Name="GreenBusList"
+                              HorizontalAlignment="Stretch"
+                              ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                        <ProgressBar x:Name="ParsingGreenProgressIndicator"
+                                        IsIndeterminate="True"
+                                        Visibility = "Collapsed"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Width="Auto"
+                                        Height="Auto"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch"
+                            Width="Auto">
+                        <!--<TextBlock
+                            x:Name="Stop2"
+                            Text="Parkland College"
+                            FontSize="22"/>-->
+                        <Button x:Name="Stop2"
+                            Content="Parkland College"
+                            FontSize="22"
+                            Click="Parkland_Button_Click"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"/>
+                        <ListView x:Name="ParklandBusList"
+                              HorizontalAlignment="Stretch"
+                              ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                        <ProgressBar x:Name="ParsingParklandProgressIndicator"
+                                        IsIndeterminate="True"
+                                        Visibility = "Collapsed"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Width="Auto"
+                                        Height="Auto"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                    
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+
+        
+    </NavigationView>
 
 </Page>
