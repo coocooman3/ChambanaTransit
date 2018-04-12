@@ -34,7 +34,7 @@
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        Width="5000">
+                        Width="Auto">
                 <!--<TextBlock
                     x:Name="Stop1"
                     Text="Wright And Springfield"
@@ -62,7 +62,7 @@
                       HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch" Width="420">
+                        HorizontalAlignment="Stretch" Width="Auto">
                 <!--<TextBlock
                         x:Name="Stop3"
                         Text="Green And 6th"
@@ -90,7 +90,7 @@
                   HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                        Width="420">
+                        Width="Auto">
                 <!--<TextBlock
                         x:Name="Stop2"
                         Text="Parkland College"
