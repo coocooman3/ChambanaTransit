@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ChambanaTransit.Views.TabbedPage"
+    x:Class="ChambanaTransit.Views.RoutesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,8 +16,8 @@
 
         <TextBlock
             x:Name="TitlePage"
-            x:Uid="Tabbed_Pivot"
-            Text="Navigation Item 1"
+            x:Uid="Routes_Pivot"
+            Text="Routes"
             Style="{StaticResource PageTitleStyle}" />
 
         <Grid 

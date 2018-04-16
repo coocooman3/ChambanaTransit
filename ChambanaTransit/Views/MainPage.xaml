@@ -8,37 +8,31 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Grid HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="700"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock  x:Name="BusRouteName"
-                                Grid.Column="0"
-                                Text="{x:Bind headsign}"
-                                HorizontalAlignment="Left"/>
-                    <TextBlock  x:Name="TimeRemaining"
-                                Grid.Column="1"
-                                Text="{x:Bind expected_mins}" 
-                                Style="{ThemeResource BodyTextBlockStyle}"
-                                HorizontalAlignment="Right"
-                                Foreground="Green"/>
-                </Grid>
-            </StackPanel>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock  x:Name="BusRouteName"
+                            Text="{x:Bind headsign}"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="0"/>
+                <TextBlock  x:Name="TimeRemaining"
+                            Text="{x:Bind expected_mins}" 
+                            Style="{ThemeResource BodyTextBlockStyle}"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="1"
+                            Foreground="Green"/>
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,0,0,0">
-        <ListViewItem VerticalAlignment="Top"
-                      HorizontalAlignment="Stretch">
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
                         Width="Auto">
-                <!--<TextBlock
-                    x:Name="Stop1"
-                    Text="Wright And Springfield"
-                    FontSize="22"/>-->
                 <Button x:Name="Stop1"
                         Content="Wright And Springfield"
                         FontSize="22"
@@ -46,27 +40,23 @@
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GraingerBusList"
-                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingGraingerProgressIndicator"
                                 IsIndeterminate="True"
                                 Visibility = "Collapsed"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="Stretch"
                                 VerticalAlignment="Top"
                                 Width="Auto"
                                 Height="Auto"/>
             </StackPanel>
         </ListViewItem>
 
-        <ListViewItem VerticalAlignment="Top"
-                      HorizontalAlignment="Stretch">
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Stretch" Width="Auto">
-                <!--<TextBlock
-                        x:Name="Stop3"
-                        Text="Green And 6th"
-                        FontSize="22"/>-->
                 <Button x:Name="Stop3"
                         Content="Green And 6th"
                         FontSize="22"
@@ -74,7 +64,7 @@
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GreenBusList"
-                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingGreenProgressIndicator"
                                     IsIndeterminate="True"
@@ -86,15 +76,11 @@
             </StackPanel>
         </ListViewItem>
 
-        <ListViewItem VerticalAlignment="Top"
-                  HorizontalAlignment="Stretch">
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                         Width="Auto">
-                <!--<TextBlock
-                        x:Name="Stop2"
-                        Text="Parkland College"
-                        FontSize="22"/>-->
                 <Button x:Name="Stop2"
                         Content="Parkland College"
                         FontSize="22"
@@ -102,7 +88,7 @@
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="ParklandBusList"
-                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingParklandProgressIndicator"
                                     IsIndeterminate="True"

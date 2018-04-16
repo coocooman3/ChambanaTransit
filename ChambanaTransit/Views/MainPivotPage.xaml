@@ -22,9 +22,9 @@
                     <views:MainPage/>
                 </Frame>
             </PivotItem>
-            <PivotItem x:Uid="PivotItem_Tabbed">
+            <PivotItem x:Uid="PivotItem_Routes">
                 <Frame>
-                    <views:TabbedPage/>
+                    <views:RoutesPage/>
                 </Frame>
             </PivotItem>
             <PivotItem x:Uid="PivotItem_Settings">

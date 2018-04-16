@@ -6,9 +6,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace ChambanaTransit.Views
 {
-    public sealed partial class TabbedPage : Page, INotifyPropertyChanged
+    public sealed partial class RoutesPage : Page, INotifyPropertyChanged
     {
-        public TabbedPage()
+        public RoutesPage()
         {
             InitializeComponent();
         }
