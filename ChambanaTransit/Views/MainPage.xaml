@@ -8,26 +8,21 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
-                </Grid.ColumnDefinitions>
+            <RelativePanel HorizontalAlignment="Stretch"
+                           Width="Auto">
                 <TextBlock  x:Name="BusRouteName"
                             Text="{x:Bind headsign}"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="0"/>
+                            RelativePanel.AlignLeftWithPanel="True"/>
                 <TextBlock  x:Name="TimeRemaining"
                             Text="{x:Bind expected_mins}" 
                             Style="{ThemeResource BodyTextBlockStyle}"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="1"
-                            Foreground="Green"/>
-            </Grid>
+                            Foreground="Green"
+                            RelativePanel.AlignRightWithPanel="True"/>
+            </RelativePanel>
         </DataTemplate>
     </Page.Resources>
 
-    <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" Margin="0,0,0,0">
+    <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled">
         <ListViewItem HorizontalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
@@ -40,15 +35,17 @@
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GraingerBusList"
+                          HorizontalAlignment="Stretch"
                           HorizontalContentAlignment="Stretch"
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
                 <ProgressBar x:Name="ParsingGraingerProgressIndicator"
-                                IsIndeterminate="True"
-                                Visibility = "Collapsed"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Top"
-                                Width="Auto"
-                                Height="Auto"/>
+                            IsIndeterminate="True"
+                            Visibility = "Collapsed"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            Width="Auto"
+                            Height="Auto"/>
             </StackPanel>
         </ListViewItem>
 
