@@ -8,8 +8,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
-            <RelativePanel HorizontalAlignment="Stretch"
-                           Width="Auto">
+            <RelativePanel HorizontalAlignment="Stretch">
                 <TextBlock  x:Name="BusRouteName"
                             Text="{x:Bind headsign}"
                             RelativePanel.AlignLeftWithPanel="True"/>
@@ -37,7 +36,14 @@
                 <ListView x:Name="GraingerBusList"
                           HorizontalAlignment="Stretch"
                           HorizontalContentAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
                 <ProgressBar x:Name="ParsingGraingerProgressIndicator"
                             IsIndeterminate="True"
                             Visibility = "Collapsed"
@@ -62,14 +68,21 @@
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="GreenBusList"
                           HorizontalContentAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
                 <ProgressBar x:Name="ParsingGreenProgressIndicator"
-                                    IsIndeterminate="True"
-                                    Visibility = "Collapsed"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Width="Auto"
-                                    Height="Auto"/>
+                            IsIndeterminate="True"
+                            Visibility = "Collapsed"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="Auto"
+                            Height="Auto"/>
             </StackPanel>
         </ListViewItem>
 
@@ -86,7 +99,13 @@
                         HorizontalContentAlignment="Stretch"/>
                 <ListView x:Name="ParklandBusList"
                           HorizontalContentAlignment="Stretch"
-                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}"/>
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
                 <ProgressBar x:Name="ParsingParklandProgressIndicator"
                                     IsIndeterminate="True"
                                     Visibility = "Collapsed"
