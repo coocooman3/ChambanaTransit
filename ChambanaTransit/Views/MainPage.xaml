@@ -8,20 +8,20 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
-            <RelativePanel HorizontalAlignment="Stretch">
+            <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Bind route.route_color}">
                 <TextBlock  x:Name="BusRouteName"
                             Text="{x:Bind headsign}"
-                            RelativePanel.AlignLeftWithPanel="True"/>
+                            RelativePanel.AlignLeftWithPanel="True"
+                            Foreground=""/>
                 <TextBlock  x:Name="TimeRemaining"
                             Text="{x:Bind expected_mins}" 
                             Style="{ThemeResource BodyTextBlockStyle}"
-                            Foreground="Green"
                             RelativePanel.AlignRightWithPanel="True"/>
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
 
-    <ListView  Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled">
+    <ListView Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled">
         <ListViewItem HorizontalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
@@ -40,7 +40,7 @@
                           ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>

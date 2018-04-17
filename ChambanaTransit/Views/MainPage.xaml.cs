@@ -72,6 +72,7 @@ namespace ChambanaTransit.Views
                 GraingerBusList.Items.Clear();
                 foreach(Departure departure in SelectedBusStop.departures)
                 {
+                    departure.route.route_color = "#" + departure.route.route_color;
                     GraingerBusList.Items.Add(departure);
                 }
                 //ContentArea.Children.Add(BusList);
@@ -120,6 +121,7 @@ namespace ChambanaTransit.Views
                 //Stop2.Text = Departures[0].headsign;
                 foreach (Departure departure in SelectedBusStop.departures)
                 {
+                    departure.route.route_color = "#" + departure.route.route_color;
                     ParklandBusList.Items.Add(departure);
                 }
             }
@@ -161,6 +163,7 @@ namespace ChambanaTransit.Views
                 Departures = SelectedBusStop.departures;
                 foreach (Departure departure in SelectedBusStop.departures)
                 {
+                    departure.route.route_color = "#" + departure.route.route_color;
                     GreenBusList.Items.Add(departure);
                 }
             }
