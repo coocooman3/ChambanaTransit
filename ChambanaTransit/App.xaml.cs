@@ -1,7 +1,7 @@
 ﻿using System;
 
 using ChambanaTransit.Services;
-
+using ChambanaTransit.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -49,39 +49,7 @@ namespace ChambanaTransit
             if (!e.PrelaunchActivated)
             {
                 ApiKey = "key=ee652d6a7a2346049b9f7750dd0cda90";
-                /*Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
-                Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/getroutesv2.2&" + ApiKey);
-
-                Windows.Web.Http.HttpResponseMessage httpResponse = new Windows.Web.Http.HttpResponseMessage();
-                string httpResponseBody = "";
-
-                try
-                {
-                    //Send the GET request
-                    httpResponse = await httpClient.GetAsync(requestUri);
-                    httpResponse.EnsureSuccessStatusCode();
-                    httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                }
-                catch (Exception ex)
-                {
-                    httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-                }
-                JsonObject SortedJsonRoutesObject;
-                if (!JsonObject.TryParse(httpResponseBody, out SortedJsonRoutesObject))
-                {
-                    httpResponseBody = "Error: Could not Parse Information Correctly";
-                }
-                else
-                {
-                    //BusList;
-                    BusStop SelectedBusStop = new BusStop(SortedJsonRoutesObject);
-                    GraingerBusList.Items.Clear();
-                    foreach (Departure departure in SelectedBusStop.departures)
-                    {
-                        GraingerBusList.Items.Add(departure);
-                    }
-                    //ContentArea.Children.Add(BusList);
-                }*/
+                RoutesPage.ParseRoutes();
                 await ActivationService.ActivateAsync(e);
             }
         }
