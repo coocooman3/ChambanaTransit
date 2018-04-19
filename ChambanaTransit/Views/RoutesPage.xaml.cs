@@ -10,7 +10,7 @@ namespace ChambanaTransit.Views
 {
     public sealed partial class RoutesPage : Page, INotifyPropertyChanged
     {
-        private static List<Route> Routes;
+        static List<Route> Routes = new List<Route>();
 
         public RoutesPage()
         {
@@ -19,6 +19,7 @@ namespace ChambanaTransit.Views
 
         static public async void ParseRoutes()
         {
+            
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
             Uri requestUri = new Uri("https://developer.cumtd.com/api/v2.2/json/GetRoutes?" + App.ApiKey);
 
@@ -45,9 +46,9 @@ namespace ChambanaTransit.Views
             {
                 //BusList;
                 JsonArray routeArray = SortedJsonRoutesObject.GetNamedArray("routes");
-                foreach (JsonObject route in routeArray)
+                foreach (var route in routeArray)
                 {
-                    Routes.Add(new Route(route));
+                    Routes.Add(new Route(route.GetObject()));
                 }
             }
         }
