@@ -49,7 +49,7 @@ namespace ChambanaTransit
             if (!e.PrelaunchActivated)
             {
                 ApiKey = "key=ee652d6a7a2346049b9f7750dd0cda90";
-                RoutesPage.ParseRoutes();
+                //RoutesPage.ParseRoutes();
                 await ActivationService.ActivateAsync(e);
             }
         }
