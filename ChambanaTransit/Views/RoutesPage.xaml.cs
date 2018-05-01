@@ -10,7 +10,7 @@ namespace ChambanaTransit.Views
 {
     public sealed partial class RoutesPage : Page, INotifyPropertyChanged
     {
-        static List<Route> Routes = new List<Route>();
+        public static List<Route> Routes = new List<Route>();
 
         public RoutesPage()
         {

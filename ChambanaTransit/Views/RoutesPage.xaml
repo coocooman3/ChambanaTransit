@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:data="using:ChambanaTransit.Models"
+    mc:Ignorable="d"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <!--<Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -27,7 +29,21 @@
                 Place your content here.--><!--
         </Grid>
     </Grid>-->
-    <ListView ItemsSource="Routes">
-        
+    
+    <ListView ItemsSource="{x:Bind }">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="data:Route" x:Name="RouteListTemplate">
+                <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Bind route_color}">
+                    <TextBlock  x:Name="BusRouteName"
+                            Text="{x:Bind route_long_name}"
+                            RelativePanel.AlignLeftWithPanel="True"/>
+                </RelativePanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 </Page>

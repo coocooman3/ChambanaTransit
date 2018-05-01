@@ -30,7 +30,7 @@ namespace ChambanaTransit.Models{
 
         public Route(JsonObject routeObject)
         {
-            route_color = routeObject.GetNamedString("route_color");
+            route_color = "#" + routeObject.GetNamedString("route_color");
             route_id = routeObject.GetNamedString("route_id");
             route_long_name = routeObject.GetNamedString("route_long_name");
             route_short_name = routeObject.GetNamedString("route_short_name");

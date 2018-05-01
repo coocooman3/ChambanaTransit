@@ -8,20 +8,22 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
-            <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Bind route.route_color}">
+            <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-12,1,-12,1" Background="{x:Bind route.route_color}">
                 <TextBlock  x:Name="BusRouteName"
                             Text="{x:Bind headsign}"
                             RelativePanel.AlignLeftWithPanel="True"
-                            Foreground=""/>
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Margin="12"/>
                 <TextBlock  x:Name="TimeRemaining"
-                            Text="{x:Bind expected_mins}" 
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            RelativePanel.AlignRightWithPanel="True"/>
+                            Text="{x:Bind expected_mins}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Margin="12"/>
             </RelativePanel>
         </DataTemplate>
     </Page.Resources>
 
-    <ListView Width="{Binding ElementName=page, Path=ActualWidth}" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled">
+    <ListView HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" SelectionMode="None" Margin="-20,1,-20,1">
         <ListViewItem HorizontalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
@@ -41,6 +43,7 @@
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
