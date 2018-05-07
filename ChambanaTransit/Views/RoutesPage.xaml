@@ -5,8 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:ChambanaTransit.Models"
-    mc:Ignorable="d"
-    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    mc:Ignorable="d">
     <!--<Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -29,19 +28,23 @@
                 Place your content here.--><!--
         </Grid>
     </Grid>-->
-    
-    <ListView ItemsSource="{x:Bind }">
+
+    <ListView ItemsSource="{x:Bind Routes}" Margin="-20,1,-20,1">
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             </Style>
         </ListView.ItemContainerStyle>
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="data:Route" x:Name="RouteListTemplate">
-                <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Bind route_color}">
+                <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-12,1,-12,1" Background="{x:Bind route_color}">
                     <TextBlock  x:Name="BusRouteName"
                             Text="{x:Bind route_long_name}"
-                            RelativePanel.AlignLeftWithPanel="True"/>
+                            Style="{StaticResource BaseTextBlockStyle}"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Margin="12"/>
                 </RelativePanel>
             </DataTemplate>
         </ListView.ItemTemplate>

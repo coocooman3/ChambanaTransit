@@ -23,7 +23,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ListView HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollMode="Enabled" SelectionMode="None" Margin="-20,1,-20,1">
+    <ListView HorizontalAlignment="Stretch" SelectionMode="None" Margin="-20,1,-20,1">
         <ListViewItem HorizontalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch">
             <StackPanel Orientation="Vertical"
