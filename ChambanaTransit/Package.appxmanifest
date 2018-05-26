@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
-  <Identity Name="7967coocooman3.ChambanaTransit" Publisher="CN=050F75D4-B430-4064-95CD-764BA4EB0786" Version="0.6.1.0" />
+  <Identity Name="7967coocooman3.ChambanaTransit" Publisher="CN=050F75D4-B430-4064-95CD-764BA4EB0786" Version="0.6.2.0" />
   <mp:PhoneIdentity PhoneProductId="151d4dba-f3b6-49eb-8393-628dbc757764" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Chambana Transit</DisplayName>
