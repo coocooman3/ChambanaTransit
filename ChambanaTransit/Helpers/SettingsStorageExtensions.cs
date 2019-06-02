@@ -2,14 +2,15 @@
 using System.IO;
 using System.Threading.Tasks;
 
+using ChambanaTransit.Core.Helpers;
+
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace ChambanaTransit.Helpers
 {
     // Use these extension methods to store and retrieve local and roaming app data
-    // For more info regarding storing and retrieving app data see documentation at
-    // https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
+    // More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
     public static class SettingsStorageExtensions
     {
         private const string FileExtension = ".json";
@@ -42,7 +43,12 @@ namespace ChambanaTransit.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.Values[key] = await Json.StringifyAsync(value);
+            settings.SaveString(key, await Json.StringifyAsync(value));
+        }
+
+        public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+        {
+            settings.Values[key] = value;
         }
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
@@ -61,12 +67,12 @@ namespace ChambanaTransit.Helpers
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentException("File name is null or empty. Specify a valid file name", "fileName");
+                throw new ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), nameof(fileName));
             }
 
             var storageFile = await folder.CreateFileAsync(fileName, options);

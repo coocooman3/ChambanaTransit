@@ -117,25 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Main_Title.Text" xml:space="preserve">
-    <value>Main</value>
-    <comment>Page title for Main</comment>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>ChambanaTransit</value>
+    <comment>Application display name</comment>
   </data>
-  <data name="Tabbed_Pivot.Text" xml:space="preserve">  
-    <value>Tabbed</value>
-    <comment>Page title for Tabbed</comment>
+  <data name="AppDescription" xml:space="preserve">
+    <value>ChambanaTransit</value>
+    <comment>Application description</comment>
   </data>
-  <data name="Tabbed_PivotItem1.Header" xml:space="preserve">  
-    <value>Item 1</value>
-    <comment>First Pivot item title for Tabbed</comment>
+  <data name="Shell_Favorites.Content" xml:space="preserve">
+    <value>Favorites</value>
+    <comment>Navigation view item name for Favorites</comment>
   </data>
-  <data name="Tabbed_PivotItem2.Header" xml:space="preserve">
-    <value>Item 2</value>
-    <comment>Second Pivot item title for Tabbed</comment>
+  <data name="Shell_Routes.Content" xml:space="preserve">
+    <value>Routes</value>
+    <comment>Navigation view item name for Routes</comment>
   </data>
-  <data name="Settings_Title.Text" xml:space="preserve">
-    <value>Settings</value>
-    <comment>Page title for Settings</comment>
+  <data name="Map_YourLocation" xml:space="preserve">
+    <value>Your location</value>
+    <comment>Your location text on map page</comment>
+  </data>
+  <data name="ExceptionLocationServiceStartListeningCanNotBeCalled" xml:space="preserve">
+    <value>The StartListening method cannot be called before the InitializeAsync method.</value>
+    <comment>Start listening cannot be called before the initialize in location service</comment>
+  </data>
+  <data name="Shell_Map.Content" xml:space="preserve">
+    <value>Map</value>
+    <comment>Navigation view item name for Map</comment>
+  </data>
+  <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
+    <value>File name is null or empty. Specify a valid file name</value>
+    <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Choose Theme</value>
@@ -172,17 +184,38 @@
   <data name="Settings_Personalization.Text" xml:space="preserve">   
     <value>Personalization</value>
     <comment>Personalization text for Settings</comment>
-  </data>  
+  </data>
+  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
+    <value>value must be an Enum!</value>
+    <comment>Value must be an Enum in enum to boolean converter</comment>
+  </data>
+  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">   
+    <value>parameter must be an Enum name!</value>
+    <comment>Parameter must be an Enum name in enum to boolean converter</comment>
+  </data>
   <data name="FirstRun_Body.Text" xml:space="preserve">
-    <value>Still in Alpha. WOrking on getting the UI fluid and working.
-    Will then work on the available stops and bringing up more information.</value>
+    <value>Replace the content of this dialog with whatever content is appropriate to your app.
+You might want to explain key features or functionality.
+Don't feel restricted to just text. You can also include images and animations if you wish too.
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+
+Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</value>
     <comment>First use prompt message body</comment>
-  </data>  
-  <data name="FirstRun_Title.Text" xml:space="preserve">
+  </data>
+  <data name="FirstRunDialog.Title" xml:space="preserve">
     <value>Welcome</value>
     <comment>First use prompt message title</comment>
   </data>
-  <data name="AfterUpdate_Body.Text" xml:space="preserve">
+  <data name="FirstRunDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Ok</value>
+    <comment>First use prompt message primary button text</comment>
+  </data>
+  <data name="WhatsNew_Body.Text" xml:space="preserve">
     <value>Replace the content of this dialog with whatever content is appropriate to your app.
 You might want to consider lists of bug fixes and new features.
 Don't feel restricted to just text. You can also include images and animations if you wish too.
@@ -193,20 +226,12 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</value>
     <comment>What's new prompt message body</comment>
   </data>
-  <data name="AfterUpdate_Title.Text" xml:space="preserve">
+  <data name="WhatsNewDialog.Title" xml:space="preserve">
     <value>What's new in this version</value>
     <comment>What's new prompt message title</comment>
   </data>
-  <data name="PivotItem_Main.Header" xml:space="preserve">
-    <value>Main</value>
-    <comment>Pivot item header for Main</comment>
-  </data>
-  <data name="PivotItem_Tabbed.Header" xml:space="preserve">
-    <value>Tabbed</value>
-    <comment>Pivot item header for Tabbed</comment>
-  </data>
-  <data name="PivotItem_Settings.Header" xml:space="preserve">
-    <value>Settings</value>
-    <comment>Pivot item header for Settings</comment>
+  <data name="WhatsNewDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Ok</value>
+    <comment>What's new prompt message primary button text</comment>
   </data>
 </root>

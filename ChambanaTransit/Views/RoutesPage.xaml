@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="ChambanaTransit.Views.RoutesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:ChambanaTransit.Models"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+            <!--  Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"  -->
+            <ListView Margin="0,0,0,0" ItemsSource="{x:Bind Routes}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="RouteListTemplate" x:DataType="data:Route">
+                        <RelativePanel
+                            Margin="-12,1,-12,1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{x:Bind route_color}">
+                            <TextBlock
+                                x:Name="BusRouteName"
+                                Margin="12"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignVerticalCenterWithPanel="True"
+                                Style="{StaticResource BaseTextBlockStyle}"
+                                Text="{x:Bind route_long_name}" />
+                        </RelativePanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

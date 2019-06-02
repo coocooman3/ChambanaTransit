@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 
@@ -29,6 +30,15 @@ namespace ChambanaTransit.Models
         public string route_long_name { get; set; }
         public string route_short_name { get; set; }
         public string route_text_color { get; set; }
+
+        public Route(JsonObject routeObject)
+        {
+            route_color = "#" + routeObject.GetNamedString("route_color");
+            route_id = routeObject.GetNamedString("route_id");
+            route_long_name = routeObject.GetNamedString("route_long_name");
+            route_short_name = routeObject.GetNamedString("route_short_name");
+            route_text_color = routeObject.GetNamedString("route_text_color");
+        }
     }
 
     public class Trip
@@ -79,7 +89,7 @@ namespace ChambanaTransit.Models
         {
             stop_id = departureObject.GetNamedString("stop_id");
             headsign = departureObject.GetNamedString("headsign");
-            //route
+            route = new Route(departureObject.GetNamedObject("route"));
             //trip
             vehicle_id = departureObject.GetNamedString("vehicle_id");
             //origin
