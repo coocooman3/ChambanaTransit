@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="ChambanaTransit.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ChambanaTransit.Models"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:DataType="data:Departure" x:Name="BusArrivalTimeListTemplate">
+            <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="-12,1,-12,1" Background="{x:Bind route.route_color}">
+                <TextBlock  x:Name="BusRouteName"
+                            Text="{x:Bind headsign}"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Margin="12"/>
+                <TextBlock  x:Name="TimeRemaining"
+                            Text="{x:Bind expected_mins}"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Margin="12"/>
+            </RelativePanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <ListView HorizontalAlignment="Stretch" SelectionMode="None" Margin="-20,1,-20,1">
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        Width="Auto">
+                <Button x:Name="Stop1"
+                        Content="Wright And Springfield"
+                        FontSize="22"
+                        Click="Grainger_Button_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
+                <ListView x:Name="GraingerBusList"
+                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <ProgressBar x:Name="ParsingGraingerProgressIndicator"
+                            IsIndeterminate="True"
+                            Visibility = "Collapsed"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            Width="Auto"
+                            Height="Auto"/>
+            </StackPanel>
+        </ListViewItem>
+
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch" Width="Auto">
+                <Button x:Name="Stop3"
+                        Content="Green And 6th"
+                        FontSize="22"
+                        Click="Green_Button_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
+                <ListView x:Name="GreenBusList"
+                          HorizontalContentAlignment="Stretch"
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <ProgressBar x:Name="ParsingGreenProgressIndicator"
+                            IsIndeterminate="True"
+                            Visibility = "Collapsed"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="Auto"
+                            Height="Auto"/>
+            </StackPanel>
+        </ListViewItem>
+
+        <ListViewItem HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                        Width="Auto">
+                <Button x:Name="Stop2"
+                        Content="Parkland College"
+                        FontSize="22"
+                        Click="Parkland_Button_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
+                <ListView x:Name="ParklandBusList"
+                          HorizontalContentAlignment="Stretch"
+                          ItemTemplate="{StaticResource BusArrivalTimeListTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <ProgressBar x:Name="ParsingParklandProgressIndicator"
+                                    IsIndeterminate="True"
+                                    Visibility = "Collapsed"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="Auto"
+                                    Height="Auto"/>
+            </StackPanel>
+        </ListViewItem>
+    </ListView>
+
+</Page>
