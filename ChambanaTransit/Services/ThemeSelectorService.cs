@@ -3,26 +3,18 @@ using System.Threading.Tasks;
 
 using ChambanaTransit.Helpers;
 
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 
 namespace ChambanaTransit.Services
 {
     public static class ThemeSelectorService
     {
-        private const string SettingsKey = "RequestedTheme";
-
-        public static event EventHandler<ElementTheme> OnThemeChanged = (sender, args) => { };
+        private const string SettingsKey = "AppBackgroundRequestedTheme";
 
         public static ElementTheme Theme { get; set; } = ElementTheme.Default;
-
-        private static readonly SolidColorBrush _baseBrush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
-
-        public static SolidColorBrush GetSystemControlForegroundForTheme()
-        {
-            return _baseBrush;
-        }
 
         public static async Task InitializeAsync()
         {
@@ -33,17 +25,21 @@ namespace ChambanaTransit.Services
         {
             Theme = theme;
 
-            SetRequestedTheme();
+            await SetRequestedThemeAsync();
             await SaveThemeInSettingsAsync(Theme);
-
-            OnThemeChanged(null, Theme);
         }
 
-        public static void SetRequestedTheme()
+        public static async Task SetRequestedThemeAsync()
         {
-            if (Window.Current.Content is FrameworkElement frameworkElement)
+            foreach (var view in CoreApplication.Views)
             {
-                frameworkElement.RequestedTheme = Theme;
+                await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    if (Window.Current.Content is FrameworkElement frameworkElement)
+                    {
+                        frameworkElement.RequestedTheme = Theme;
+                    }
+                });
             }
         }
 

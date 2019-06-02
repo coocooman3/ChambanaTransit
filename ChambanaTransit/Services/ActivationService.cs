@@ -4,13 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using ChambanaTransit.Activation;
-using ChambanaTransit.Helpers;
+using ChambanaTransit.Core.Helpers;
+using ChambanaTransit.Services;
 
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace ChambanaTransit.Services
 {
@@ -18,13 +17,15 @@ namespace ChambanaTransit.Services
     internal class ActivationService
     {
         private readonly App _app;
-        private readonly UIElement _shell;
         private readonly Type _defaultNavItem;
+        private Lazy<UIElement> _shell;
 
-        public ActivationService(App app, Type defaultNavItem, UIElement shell = null)
+        private object _lastActivationArgs;
+
+        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
             _app = app;
-            _shell = shell ?? new Frame();
+            _shell = shell;
             _defaultNavItem = defaultNavItem;
         }
 
@@ -40,19 +41,31 @@ namespace ChambanaTransit.Services
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = _shell;
-                    NavigationService.NavigationFailed += (sender, e) =>
-                    {
-                        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
-                    };
-                    NavigationService.Navigated += Frame_Navigated;
-                    if (SystemNavigationManager.GetForCurrentView() != null)
-                    {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
-                    }
+                    Window.Current.Content = _shell?.Value ?? new Frame();
                 }
             }
 
+            await HandleActivationAsync(activationArgs);
+            _lastActivationArgs = activationArgs;
+
+            if (IsInteractive(activationArgs))
+            {
+                // Ensure the current window is active
+                Window.Current.Activate();
+
+                // Tasks after activation
+                await StartupAsync();
+            }
+        }
+
+        private async Task InitializeAsync()
+        {
+            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
+            await ThemeSelectorService.InitializeAsync();
+        }
+
+        private async Task HandleActivationAsync(object activationArgs)
+        {
             var activationHandler = GetActivationHandlers()
                                                 .FirstOrDefault(h => h.CanHandle(activationArgs));
 
@@ -68,58 +81,28 @@ namespace ChambanaTransit.Services
                 {
                     await defaultHandler.HandleAsync(activationArgs);
                 }
-
-                // Ensure the current window is active
-                Window.Current.Activate();
-
-                // Tasks after activation
-                await StartupAsync();
             }
-        }
-
-        private async Task InitializeAsync()
-        {
-            Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasks();
-            await Singleton<LiveTileService>.Instance.EnableQueueAsync();
-            await ThemeSelectorService.InitializeAsync();
-            await Task.CompletedTask;
         }
 
         private async Task StartupAsync()
         {
-            await WhatsNewDisplayService.ShowIfAppropriateAsync();
+            await ThemeSelectorService.SetRequestedThemeAsync();
+            await Singleton<DevCenterNotificationsService>.Instance.InitializeAsync();
             await FirstRunDisplayService.ShowIfAppropriateAsync();
-            Singleton<LiveTileService>.Instance.SampleUpdate();
-            ThemeSelectorService.SetRequestedTheme();
-            await Task.CompletedTask;
+            await WhatsNewDisplayService.ShowIfAppropriateAsync();
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
-            yield return Singleton<BackgroundTaskService>.Instance;
-            yield return Singleton<LiveTileService>.Instance;
+            yield return Singleton<DevCenterNotificationsService>.Instance;
             yield return Singleton<ToastNotificationsService>.Instance;
+            yield return Singleton<BackgroundTaskService>.Instance;
             yield return Singleton<SuspendAndResumeService>.Instance;
         }
 
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
-        }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
-                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-        }
-
-        private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                e.Handled = true;
-            }
         }
     }
 }

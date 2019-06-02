@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using ChambanaTransit.Helpers;
 using ChambanaTransit.Views;
 
-using Windows.ApplicationModel;
+using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace ChambanaTransit.Services
 {
-    public class FirstRunDisplayService
+    public static class FirstRunDisplayService
     {
+        private static bool shown = false;
+
         internal static async Task ShowIfAppropriateAsync()
         {
-            bool hasShownFirstRun = false;
-            hasShownFirstRun = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(hasShownFirstRun));
-
-            if (!hasShownFirstRun)
+            if (SystemInformation.IsFirstRun && !shown)
             {
-                await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(hasShownFirstRun), true);
+                shown = true;
                 var dialog = new FirstRunDialog();
                 await dialog.ShowAsync();
             }

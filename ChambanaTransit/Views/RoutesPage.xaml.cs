@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using ChambanaTransit.Models;
+
 using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 
 namespace ChambanaTransit.Views
 {
-    public sealed partial class RoutesPage : Page
+    public sealed partial class RoutesPage : Page, INotifyPropertyChanged
     {
         public ObservableCollection<Route> Routes { get; set; } = new ObservableCollection<Route>();
 
@@ -18,6 +18,21 @@ namespace ChambanaTransit.Views
             ParseRoutes();
             InitializeComponent();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public async void ParseRoutes()
         {

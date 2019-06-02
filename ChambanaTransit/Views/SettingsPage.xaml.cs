@@ -1,20 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
+using ChambanaTransit.Helpers;
 using ChambanaTransit.Services;
 
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace ChambanaTransit.Views
 {
+    // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.md
+    // TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     public sealed partial class SettingsPage : Page, INotifyPropertyChanged
     {
-        //// TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.md
-        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
-
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme
@@ -35,27 +37,28 @@ namespace ChambanaTransit.Views
 
         public SettingsPage()
         {
-            Loaded += SettingsPage_Loaded;
             InitializeComponent();
         }
 
-        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            Initialize();
+            await InitializeAsync();
         }
 
-        private void Initialize()
+        private async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+            await Task.CompletedTask;
         }
 
         private string GetVersionDescription()
         {
+            var appName = "AppDisplayName".GetLocalized();
             var package = Package.Current;
             var packageId = package.Id;
             var version = packageId.Version;
 
-            return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
         private async void ThemeChanged_CheckedAsync(object sender, RoutedEventArgs e)
